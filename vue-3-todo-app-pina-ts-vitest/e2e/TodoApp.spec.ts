@@ -9,7 +9,7 @@ test.describe('accessibility', () => {
       .disableRules(['definition-list', 'scrollable-region-focusable'])
       .exclude('iframe')
       .analyze()
-    console.log(accessibilityScanResults.violations)
+
     expect(accessibilityScanResults.violations).toEqual([])
   })
 })

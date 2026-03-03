@@ -11,5 +11,10 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  // Додана секція правил для лабораторної роботи
+  rules: {
+    'no-console': 'warn',
+    'no-unused-vars': 'warn'
   }
 }

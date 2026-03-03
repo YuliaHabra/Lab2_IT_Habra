@@ -1,6 +1,6 @@
 import { setActivePinia, createPinia } from 'pinia'
 import { useTodoListStore } from '@/stores/todoList'
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import TodoList from '../TodoList.vue'
 
