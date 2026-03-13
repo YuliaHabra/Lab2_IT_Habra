@@ -17,7 +17,7 @@ export const useTodoListStore = defineStore('todoList', {
       this.todoList.push({
         id: this.nextId++,
         title,
-        completed: true
+        completed: false
       })
     },
     toggleTodoItem(id: TodoItem['id']) {
