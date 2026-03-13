@@ -11,6 +11,11 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    
+    # Вказуємо папку, де лежить наш проєкт (і файл package.json)
+    defaults:
+      run:
+        working-directory: ./vue-3-todo-app-pina-ts-vitest
 
     steps:
       - name: Checkout repository
