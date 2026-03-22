@@ -21,6 +21,7 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
 import { useTodoListStore } from '../stores/todoList'
+import posthog from 'posthog-js';
 export default defineComponent({
   name: 'TodoForm',
   setup() {
@@ -30,6 +31,12 @@ export default defineComponent({
       if (title.length === 0) {
         return
       }
+      // 2. Викликаємо capture ПЕРЕД або ПІСЛЯ додавання завдання 
+      posthog.capture('task_created', {
+        priority: 'high',
+        category: 'lab5',
+        task_name: title // Можна додати назву завдання як властивість [cite: 764, 767]
+      })
       store.addTodoItem(title)
       todo.value = ''
     }

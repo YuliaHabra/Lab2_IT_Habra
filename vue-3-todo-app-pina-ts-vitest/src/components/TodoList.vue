@@ -4,7 +4,11 @@
       <button @click.stop="toggleAllTodoItems" class="todo-options__button button__toggle-all">
         Toggle All Complete
       </button>
-      <button @click.stop="removeAllTodoItems" class="todo-options__button button__remove-all">
+      <button
+        v-if="isRemoveButtonEnabled"
+        @click.stop="removeAllTodoItems"
+        class="todo-options__button button__remove-all"
+      >
         Remove All To-do's
       </button>
     </div>
@@ -59,21 +63,58 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue' // Додано onMounted та ref
 import { useTodoListStore } from '../stores/todoList'
 import { storeToRefs } from 'pinia'
+import posthog from 'posthog-js'
+
 export default defineComponent({
   name: 'TodoList',
   setup() {
     const store = useTodoListStore()
     const { todoList } = storeToRefs(store)
-    const { toggleTodoItem, removeTodoItem } = store
+    
+    // Змінна для керування видимістю кнопки "Remove All" через Feature Flag
+    const isRemoveButtonEnabled = ref(false)
+
+    onMounted(() => {
+      // Перевіряємо статус прапорця при завантаженні сторінки
+      posthog.onFeatureFlags(() => {
+        isRemoveButtonEnabled.value = posthog.isFeatureEnabled('show-remove-all-button')
+      })
+    })
+
+    // Функція для обробки видалення одного елемента (Крок 2.3)
+    const removeTodoItem = (id: number) => {
+      posthog.capture('task_deleted', { 
+        reason: 'user_action',
+        task_id: id 
+      })
+      store.removeTodoItem(id)
+    }
+
+    // Функція для завершення завдання (Крок 2.2)
+    const toggleTodoItem = (id: number) => {
+      const item = todoList.value.find(t => t.id === id)
+      if (item && !item.completed) {
+        posthog.capture('task_completed', {
+          time_to_complete_seconds: 120 
+        })
+      }
+      store.toggleTodoItem(id)
+    }
+
     return {
       todoList,
+      isRemoveButtonEnabled, // Повертаємо змінну для використання у v-if
       toggleTodoItem,
       removeTodoItem,
       toggleAllTodoItems: () => store.toggleAllTodoItems(),
-      removeAllTodoItems: () => store.removeAllTodoItems(),
+      removeAllTodoItems: () => {
+        // Відстеження масового видалення
+        posthog.capture('task_deleted', { reason: 'remove_all' })
+        store.removeAllTodoItems()
+      },
       todoListLength: computed(() => store.todoListLength)
     }
   }
