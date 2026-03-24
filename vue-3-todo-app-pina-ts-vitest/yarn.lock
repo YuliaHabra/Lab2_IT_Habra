@@ -386,6 +386,60 @@
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz"
   integrity sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==
 
+"@sentry-internal/browser-utils@10.45.0":
+  version "10.45.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/browser-utils/-/browser-utils-10.45.0.tgz"
+  integrity sha512-ZPZpeIarXKScvquGx2AfNKcYiVNDA4wegMmjyGVsTA2JPmP0TrJoO3UybJS6KGDeee8V3I3EfD/ruauMm7jOFQ==
+  dependencies:
+    "@sentry/core" "10.45.0"
+
+"@sentry-internal/feedback@10.45.0":
+  version "10.45.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/feedback/-/feedback-10.45.0.tgz"
+  integrity sha512-vCSurazFVq7RUeYiM5X326jA5gOVrWYD6lYX2fbjBOMcyCEhDnveNxMT62zKkZDyNT/jyD194nz/cjntBUkyWA==
+  dependencies:
+    "@sentry/core" "10.45.0"
+
+"@sentry-internal/replay-canvas@10.45.0":
+  version "10.45.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/replay-canvas/-/replay-canvas-10.45.0.tgz"
+  integrity sha512-nvq/AocdZTuD7y0KSiWi3gVaY0s5HOFy86mC/v1kDZmT/jsBAzN5LDkk/f1FvsWma1peqQmpUqxvhC+YIW294Q==
+  dependencies:
+    "@sentry-internal/replay" "10.45.0"
+    "@sentry/core" "10.45.0"
+
+"@sentry-internal/replay@10.45.0":
+  version "10.45.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/replay/-/replay-10.45.0.tgz"
+  integrity sha512-vjosRoGA1bzhVAEO1oce+CsRdd70quzBeo7WvYqpcUnoLe/Rv8qpOMqWX3j26z7XfFHMExWQNQeLxmtYOArvlw==
+  dependencies:
+    "@sentry-internal/browser-utils" "10.45.0"
+    "@sentry/core" "10.45.0"
+
+"@sentry/browser@10.45.0":
+  version "10.45.0"
+  resolved "https://registry.npmjs.org/@sentry/browser/-/browser-10.45.0.tgz"
+  integrity sha512-e/a8UMiQhqqv706McSIcG6XK+AoQf9INthi2pD+giZfNRTzXTdqHzUT5OIO5hg8Am6eF63nDJc+vrYNPhzs51Q==
+  dependencies:
+    "@sentry-internal/browser-utils" "10.45.0"
+    "@sentry-internal/feedback" "10.45.0"
+    "@sentry-internal/replay" "10.45.0"
+    "@sentry-internal/replay-canvas" "10.45.0"
+    "@sentry/core" "10.45.0"
+
+"@sentry/core@10.45.0":
+  version "10.45.0"
+  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.45.0.tgz"
+  integrity sha512-s69UXxvefeQxuZ5nY7/THtTrIEvJxNVCp3ns4kwoCw1qMpgpvn/296WCKVmM7MiwnaAdzEKnAvLAwaxZc2nM7Q==
+
+"@sentry/vue@^10.45.0":
+  version "10.45.0"
+  resolved "https://registry.npmjs.org/@sentry/vue/-/vue-10.45.0.tgz"
+  integrity sha512-p6ghTgQtiCBZ+Yw0B2xmC69S8AdCRRsYvbTHW7MJYspwNnJDs7rqgCBqOxNhvr3tsKdDuEOEHLtf/5hbKi+8xQ==
+  dependencies:
+    "@sentry/browser" "10.45.0"
+    "@sentry/core" "10.45.0"
+
 "@sinclair/typebox@^0.27.8":
   version "0.27.10"
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.10.tgz"
@@ -2826,7 +2880,7 @@ pify@^3.0.0:
   resolved "https://registry.npmjs.org/pify/-/pify-3.0.0.tgz"
   integrity sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==
 
-pinia@^2.0.32:
+pinia@^2.0.32, "pinia@2.x || 3.x":
   version "2.0.33"
   resolved "https://registry.npmjs.org/pinia/-/pinia-2.0.33.tgz"
   integrity sha512-HOj1yVV2itw6rNIrR2f7+MirGNxhORjrULL8GWgRwXsGSvEqIQ+SE0MYt6cwtpegzCda3i+rVTZM+AM7CG+kRg==
@@ -3710,7 +3764,7 @@ vue-tsc@^1.2.0:
     "@volar/vue-language-core" "1.2.0"
     "@volar/vue-typescript" "1.2.0"
 
-"vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", vue@^3.2.25, vue@^3.4.21, vue@3.5.30:
+"vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", vue@^3.2.25, vue@^3.4.21, "vue@2.x || 3.x", vue@3.5.30:
   version "3.5.30"
   resolved "https://registry.npmjs.org/vue/-/vue-3.5.30.tgz"
   integrity sha512-hTHLc6VNZyzzEH/l7PFGjpcTvUgiaPK5mdLkbjrTeWSRcEfxFrv56g/XckIYlE9ckuobsdwqd5mk2g1sBkMewg==
